@@ -5,7 +5,7 @@
 #### 1. Clone
 
 ```shell
-git clone 
+git clone https://github.com/dextrop/socialmediabackend.git
 ```
 
 #### 2. Install Dependencies
