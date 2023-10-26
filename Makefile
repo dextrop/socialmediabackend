@@ -18,7 +18,7 @@ migrate:
 	python manage.py makemigrations backendapp && python manage.py migrate
 
 install:
-	python -r requirements.txt
+	pip install -r requirements.txt
 
 ## Create Super User
 createsuperuser:

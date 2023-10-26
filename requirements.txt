@@ -3,3 +3,5 @@ djangorestframework
 django-cors-headers
 django-oauth-toolkit
 pymemcache
+Pillow
+python-dotenv
