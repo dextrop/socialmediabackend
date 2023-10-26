@@ -1,0 +1,91 @@
+{
+	"info": {
+		"_postman_id": "3eb9327f-8e35-44fb-923a-0cb23a912c51",
+		"name": "Social Media Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10525306"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "profile_picture",
+							"type": "file",
+							"src": ""
+						},
+						{
+							"key": "phone_no",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/signup/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"signup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"scoder91\",\n    \"password\":\"Alpha@123\"\n}"
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/login/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
