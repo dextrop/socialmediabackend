@@ -14,12 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
 from django.conf import settings
+from django.urls import path, include
 from django.conf.urls.static import static
 from backendapp.views.signup import SignupView
+from backendapp.views.login import LoginView
+from backendapp.views.customloginpage import CustomLoginPageView
+from backendapp.views.authcallback import AuthCallbackView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/', SignupView.as_view()),
+    path('login/', LoginView.as_view()),
+    path('oauth/login/', CustomLoginPageView.as_view()),
+    path('callback/', AuthCallbackView.as_view()),
+    path('oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),  # Include OAuth2 urls
+
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

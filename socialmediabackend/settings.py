@@ -144,3 +144,5 @@ REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES': (
 
 
 MEDIA_URL = '/media/'
+
+LOGIN_URL = '/oauth/login'
