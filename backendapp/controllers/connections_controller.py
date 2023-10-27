@@ -18,12 +18,6 @@ class ConnectionsController():
         except Exception as e:
             raise ValidationError("User Does not exits")
 
-        if Connection.objects.filter(
-                Q(user=self.user.id, connection=connection_user.id) |
-                Q(user=connection_user.id, connection=self.user.id)
-        ).exists():
-            raise ValidationError('Connection already exists.')
-
         serializer = ConnectionSerializer(data={
             'user': self.user.id,
             'connection': connection_user.id
@@ -56,6 +50,8 @@ class ConnectionsController():
             connection_user = Users.objects.get(username=username)
         except Exception as e:
             raise ValidationError("User Does not exits")
+
+        print (self.user.id, connection_user.id, username)
         obj = Connection.objects.filter(
                 Q(user=self.user.id, connection=connection_user.id) |
                 Q(user=connection_user.id, connection=self.user.id)
