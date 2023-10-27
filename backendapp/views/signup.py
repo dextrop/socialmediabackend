@@ -5,7 +5,6 @@ from backendapp.lib.custom_response import CustomResponse
 from rest_framework.parsers import MultiPartParser, FormParser
 
 class SignupView(generics.GenericAPIView):
-    permission_classes = (AllowAny,)
     allowed_methods = ("POST",)
     parser_classes = (MultiPartParser, FormParser)
 

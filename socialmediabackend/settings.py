@@ -44,10 +44,34 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'backendapp',
     'rest_framework',
-    'oauth2_provider'
+    'oauth2_provider',
+    'corsheaders'
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000"
+]
+
+CORS_ALLOW_METHODS = (
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS'
+)
+
+CORS_ALLOW_HEADERS = (
+    'x-requested-with',
+    'content-type',
+    'accept',
+    'origin',
+    'authorization',
+    'csrftoken'
+)
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -142,10 +166,11 @@ REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES': (
     'rest_framework.permissions.AllowAny',
 ), 'DEFAULT_RENDERER_CLASSES': (
     'rest_framework.renderers.JSONRenderer',
+
+), 'DEFAULT_AUTHENTICATION_CLASSES': (
+    'backendapp.lib.authentication.TokenAuthentication',
 ),
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#     'rest_framework.authentication.TokenAuthentication',
-# )
+    "EXCEPTION_HANDLER": "backendapp.lib.customexceptionhandler.custom_exception_handler",
 }
 
 AUTHENTICATION_BACKENDS = [

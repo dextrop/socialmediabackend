@@ -5,3 +5,4 @@ django-oauth-toolkit
 pymemcache
 Pillow
 python-dotenv
+django-filter
