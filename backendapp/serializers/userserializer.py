@@ -8,6 +8,7 @@ class UsersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Users
         fields = ('id', 'email', 'username', 'name', 'profile_picture', 'password')
+        extra_kwargs = {'password': {'write_only': True}}  # Password must be a write only field.
 
     def validate_password(self, value):
         if len(value) < 8:

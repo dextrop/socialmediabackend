@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
 ]
 
 ROOT_URLCONF = 'urls'
@@ -142,10 +143,16 @@ REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES': (
 ), 'DEFAULT_RENDERER_CLASSES': (
     'rest_framework.renderers.JSONRenderer',
 ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-    'rest_framework.authentication.TokenAuthentication',
-)
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#     'rest_framework.authentication.TokenAuthentication',
+# )
 }
+
+AUTHENTICATION_BACKENDS = [
+    'oauth2_provider.backends.OAuth2Backend',
+    'django.contrib.auth.backends.ModelBackend'
+]
+
 
 
 MEDIA_URL = '/media/'

@@ -21,6 +21,7 @@ from backendapp.views.signup import SignupView
 from backendapp.views.login import LoginView
 from backendapp.views.customloginpage import CustomLoginPageView
 from backendapp.views.authcallback import AuthCallbackView
+from backendapp.views.userview import UserView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('login/', LoginView.as_view()),
     path('oauth/login/', CustomLoginPageView.as_view()),
     path('callback/', AuthCallbackView.as_view()),
+    path('user/', UserView.as_view()),
     path('oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),  # Include OAuth2 urls
 
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

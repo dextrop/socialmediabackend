@@ -38,5 +38,10 @@ class Users(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', 'name']
 
+    @property
+    def is_authenticated(self):
+        return True
+
     def __str__(self):
         return self.username
+

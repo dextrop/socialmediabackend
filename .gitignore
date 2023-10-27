@@ -4,3 +4,4 @@ venv/
 backendapp/migrations
 db.sqlite3
 .env
+uploads/
