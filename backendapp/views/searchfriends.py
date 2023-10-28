@@ -1,6 +1,8 @@
 from rest_framework.generics import ListAPIView
 from rest_framework import filters, status
 from django_filters.rest_framework import DjangoFilterBackend
+
+from backendapp.lib.custompagination import CustomPagination
 from backendapp.models import Users
 from backendapp.serializers.searchconnectionsserializer import SearchConnectionsSerializer
 from rest_framework.permissions import IsAuthenticated
@@ -13,6 +15,8 @@ class UserSearchAPIView(ListAPIView):
     serializer_class = SearchConnectionsSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_class = UserFilter
+    pagination_class = CustomPagination
+
 
     def get_queryset(self):
         # Exclude the authenticated user from the queryset
@@ -20,7 +24,8 @@ class UserSearchAPIView(ListAPIView):
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
-
+        paginated_user = self.paginate_queryset(queryset)
         context = {'user': request.user}
-        serializer = SearchConnectionsSerializer(queryset, many=True, context=context)
-        return CustomResponse(message="Users retrieved successfully", payload=serializer.data, code=status.HTTP_200_OK)
+        serializer = SearchConnectionsSerializer(paginated_user, many=True, context=context)
+        resp = self.get_paginated_response(serializer.data)
+        return CustomResponse(message="Users retrieved successfully", payload=resp, code=status.HTTP_200_OK)
