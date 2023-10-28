@@ -5,12 +5,10 @@ from django.core.exceptions import ValidationError
 class Connection(models.Model):
     REQUEST_SENT = 'Request_Sent'
     ACCEPTED = 'Accepted'
-    BLOCKED = 'Blocked'
 
     STATUS_CHOICES = [
         (REQUEST_SENT, 'Request Sent'),
-        (ACCEPTED, 'Accepted'),
-        (BLOCKED, 'Blocked'),
+        (ACCEPTED, 'Accepted')
     ]
 
     user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name='user_connections')

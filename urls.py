@@ -22,6 +22,7 @@ from backendapp.views.searchfriends import UserSearchAPIView
 from backendapp.views.connections import ConnectionView
 from backendapp.views.post import PostView
 from backendapp.views.likes import LikeView
+from backendapp.views.comments import CommentView
 from backendapp.views.authurls import SignupView, LoginView, CustomLoginPageView, AuthCallbackView
 
 urlpatterns = [
@@ -35,6 +36,7 @@ urlpatterns = [
     path('connections/', ConnectionView.as_view()),
     path('post/', PostView.as_view()),
     path('likes/', LikeView.as_view()),
+    path('comment/', CommentView.as_view()),
     path('oauth/', include('oauth2_provider.urls', namespace='oauth2_provider')),  # Include OAuth2 urls
 
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
