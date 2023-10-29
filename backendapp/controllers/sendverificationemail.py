@@ -1,6 +1,7 @@
 import sendgrid
+from django.conf import settings
 
-SENDGRID_API_KEY = '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'
+SENDGRID_API_KEY = settings.APP_CONF["OAUTH_CLIENT_SECRET"]
 SUPPORT_EMAIL = 'scoder91@gmail.com'
 
 def send_email(otp, recipient_email):
