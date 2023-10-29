@@ -1,18 +1,22 @@
 from rest_framework import generics, status
-from rest_framework.permissions import AllowAny
-from backendapp.controllers.usercontroller import UserController
 from backendapp.lib.custom_response import CustomResponse
 from rest_framework.parsers import MultiPartParser, FormParser
+from backendapp.serializers.userserializer import UsersSerializer, Users
 
 class SignupView(generics.GenericAPIView):
     allowed_methods = ("POST",)
     parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request):
-        controller = UserController()
-        result = controller.signup(request.data.dict())
-        if not result['status']:
-            return CustomResponse(message=result['message'], code=status.HTTP_400_BAD_REQUEST)
-
-        return CustomResponse(message=result['message'], code=status.HTTP_201_CREATED)
+        try:
+            serializer = UsersSerializer(data=request.data)
+            if serializer.is_valid():
+                user_data = serializer.validated_data
+                Users.objects.create_user(**user_data)
+                return CustomResponse(code=status.HTTP_201_CREATED, message= 'User created successfully')
+            else:
+                return CustomResponse(code=status.HTTP_400_BAD_REQUEST, message=serializer.errors)
+        except Exception as e:
+            print (e)
+            return CustomResponse(code=status.HTTP_500_INTERNAL_SERVER_ERROR, message=str(e))
 

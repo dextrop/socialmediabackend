@@ -13,6 +13,7 @@ class PostView(generics.GenericAPIView):
     pagination_class = CustomPagination
 
     def get(self, request):
+        """Return all post by user or return post by ID"""
         id = request.GET.get("id", None)
         if id is not None:
             posts = Post.objects.filter(id=id)
@@ -28,6 +29,7 @@ class PostView(generics.GenericAPIView):
         return CustomResponse(message="Post API",payload=resp,code=status.HTTP_200_OK)
 
     def post(self, request):
+        """Create a new post"""
         status, error = PostController().create_post(request)
         if not status:
             return CustomResponse(message=error, payload=None, code=status.HTTP_400_BAD_REQUEST)
@@ -35,5 +37,6 @@ class PostView(generics.GenericAPIView):
 
 
     def delete(self, request):
+        """Delete Created post"""
         status = PostController().delete_post(request)
         return CustomResponse(message="Post API", payload="Post Deleted Successfully", code=status.HTTP_201_CREATED)

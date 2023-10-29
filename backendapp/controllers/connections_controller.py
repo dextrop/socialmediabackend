@@ -8,11 +8,13 @@ class ConnectionsController():
         self.user = user
 
     def get_all_connection(self):
+        """List all connection for a user."""
         connectionObj = Connection.objects.filter(Q(user=self.user) | Q(connection=self.user))
         return ConnectionSerializer(connectionObj, many=True).data
 
 
     def add_connection(self, username):
+        """Create a connection request"""
         try:
             connection_user = Users.objects.get(username=username)
         except Exception as e:
@@ -28,6 +30,7 @@ class ConnectionsController():
         return "Connection request send"
 
     def approve_connection(self, username):
+        """Approve a connection request"""
         try:
             connection_user = Users.objects.get(username=username)
             connection_object = Connection.objects.get(user=connection_user.id, connection=self.user.id)
@@ -46,12 +49,12 @@ class ConnectionsController():
         return "Connection Added Successfully"
 
     def remove_connection(self, username):
+        """Remove a connection"""
         try:
             connection_user = Users.objects.get(username=username)
         except Exception as e:
             raise ValidationError("User Does not exits")
 
-        print (self.user.id, connection_user.id, username)
         obj = Connection.objects.filter(
                 Q(user=self.user.id, connection=connection_user.id) |
                 Q(user=connection_user.id, connection=self.user.id)

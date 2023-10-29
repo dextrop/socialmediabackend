@@ -18,3 +18,7 @@ class Connection(models.Model):
 
     def save(self, *args, **kwargs):
         super(Connection, self).save(*args, **kwargs)
+
+
+    class Meta:
+        unique_together = ('user', 'connection')

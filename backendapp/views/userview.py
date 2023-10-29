@@ -8,7 +8,13 @@ class UserView(generics.GenericAPIView):
     permission_classes = (IsAuthenticated, )
 
     def get(self, request):
+        """
+        Returns the serialized user data. The response includes
+        The response includes a message, a status code, and serialized user data as payload
+        """
         return CustomResponse(
-            message="Test API", code=status.HTTP_201_CREATED, payload=UsersSerializer(request.user).data
+            message="Test API",
+            code=status.HTTP_201_CREATED,
+            payload=UsersSerializer(request.user).data
         )
 

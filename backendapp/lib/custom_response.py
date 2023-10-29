@@ -8,6 +8,7 @@ from rest_framework.status import (
 )
 
 class CustomResponse(Response):
+    """Custom Response to maintain standard response structure through-out the APIs """
     def __init__(self,message=None, code=HTTP_200_OK, payload=None):
 
         data = {"status": True, "payload": payload, "message": message}

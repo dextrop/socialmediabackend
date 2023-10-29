@@ -14,7 +14,6 @@ class CustomLoginPageView(View):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            # Redirect to OAuth2 authorization URL after successful login
             oauth2_url = reverse('oauth2_provider:authorize') + "?" + request.GET.get("next").split("authorize/?")[1]
             return HttpResponseRedirect(oauth2_url)
         else:

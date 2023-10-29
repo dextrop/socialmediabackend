@@ -5,32 +5,39 @@ from backendapp.lib.custom_response import CustomResponse
 from backendapp.controllers.connections_controller import ConnectionsController
 
 MSG = "Connection API's"
+
 class ConnectionView(generics.GenericAPIView):
     permission_classes = (IsAuthenticated, )
 
-    def _setup(self, request, raise_username_exception=False):
+    def _setup(self, request):
+        """Initial View Setup, Include check for username
+        and create a controller for connections"""
         username = request.data.get("username", None)
         controller = ConnectionsController(request.user)
-        if not username and raise_username_exception:
+        if not username:
             raise ValidationError("Missing Username")
         return username, controller
 
     def get(self, request):
-        username, controller = self._setup(request)
+        """Get All connections"""
+        controller = ConnectionsController(request.user)
         resp = controller.get_all_connection(),
         return CustomResponse(message=MSG, payload=resp, code=status.HTTP_200_OK)
 
     def post(self, request):
-        username, controller = self._setup(request, True)
+        """Add new connection"""
+        username, controller = self._setup(request)
         response = controller.add_connection(username)
         return CustomResponse(message=MSG, payload = response, code=status.HTTP_200_OK)
 
     def put(self, request):
-        username, controller = self._setup(request, True)
+        """Approve a connection request"""
+        username, controller = self._setup(request)
         resp = controller.approve_connection(username)
         return CustomResponse(message=MSG, payload=resp, code=status.HTTP_200_OK)
 
     def delete(self, request):
-        username, controller = self._setup(request, True)
+        """remove a connection"""
+        username, controller = self._setup(request)
         resp = controller.remove_connection(username)
         return CustomResponse(message=MSG, payload=resp, code=status.HTTP_200_OK)

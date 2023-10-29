@@ -9,5 +9,5 @@ class Comments(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ('comment', 'post_id','commented_by')
+        unique_together = ('comment', 'post_id', 'commented_by')
 

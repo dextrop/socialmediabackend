@@ -1,3 +1,4 @@
+# import traceback, logger
 from rest_framework.views import exception_handler
 from backendapp.lib.custom_response import CustomResponse
 from rest_framework.status import HTTP_500_INTERNAL_SERVER_ERROR, HTTP_501_NOT_IMPLEMENTED, HTTP_400_BAD_REQUEST
@@ -8,8 +9,8 @@ def custom_exception_handler(exc, context):
 	the `status_code` to the response and renames the `detail` key to `error`.
 	"""
 	response = exception_handler(exc, context)
-	import traceback
-	stack = traceback.format_exc()
+
+	# stack = traceback.format_exc()
 	# logger.exception(stack)
 
 	if response is not None:
@@ -31,6 +32,7 @@ def custom_exception_handler(exc, context):
 				message = 'Missing key in request data, please check'
 
 		elif exc.__class__.__name__ == 'ValidationError':
+			print (exc.__class__.__name__)
 			code = HTTP_400_BAD_REQUEST
 			message = exc.message
 

@@ -6,3 +6,7 @@ class Likes(models.Model):
     liked_by = models.ForeignKey(Users, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        unique_together = ('post_id', 'liked_by')
+
+

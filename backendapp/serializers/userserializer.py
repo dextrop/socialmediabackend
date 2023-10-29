@@ -11,6 +11,7 @@ class UsersSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}  # Password must be a write only field.
 
     def validate_password(self, value):
+        """Validate Password"""
         if len(value) < 8:
             raise serializers.ValidationError('Password must be at least 8 characters long.')
 

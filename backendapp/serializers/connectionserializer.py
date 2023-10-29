@@ -2,7 +2,6 @@
 from django.db.models import Q
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-from backendapp.models import Users
 from backendapp.models.connections import Connection
 
 class ConnectionSerializer(serializers.ModelSerializer):
@@ -12,6 +11,8 @@ class ConnectionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def validate(self, data):
+        """Check if user connection already exits, connection
+        could be UserA -> UserB or UserB -> UserA"""
         user = data.get("user")
         connection_user = data.get("connection")
 

@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from backendapp.models import Users, Connection
-import re
 
 class SearchConnectionsSerializer(serializers.ModelSerializer):
     profile_picture = serializers.ImageField(max_length=None, use_url=True, allow_null=True, required=False)
@@ -10,6 +9,9 @@ class SearchConnectionsSerializer(serializers.ModelSerializer):
         fields = ('id', 'email', 'username', 'name', 'profile_picture')
 
     def to_representation(self, instance):
+        """Update result with connection_status for each person, connection status can be
+        Request_Sent, Connected, Wait for conformation
+        """
         representation = super().to_representation(instance)
         user = self.context.get('user', None)  # Accessing the extra context
 
@@ -24,7 +26,6 @@ class SearchConnectionsSerializer(serializers.ModelSerializer):
 
 
         received_connections = Connection.objects.filter(connection=instance.id, user=user.id)
-        print (received_connections)
         if received_connections.count() > 0:
             if received_connections[0].status == "Request_Sent":
                 representation['connection_status'] = "Wait for conformation"

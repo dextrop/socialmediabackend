@@ -80,6 +80,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
+    'backendapp.lib.validator.RequestValidator',
 ]
 
 ROOT_URLCONF = 'urls'

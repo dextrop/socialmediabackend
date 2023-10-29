@@ -6,7 +6,7 @@ from backendapp.models.post import Post
 from backendapp.lib.custom_response import CustomResponse
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import IsAuthenticated
-from backendapp.lib.helper import validate_request
+from backendapp.controllers.commentscontroller import CommentController
 
 class CommentView(generics.GenericAPIView):
     allowed_methods = ("POST",)
@@ -14,40 +14,25 @@ class CommentView(generics.GenericAPIView):
     permission_classes = (IsAuthenticated, )
 
     def get(self, request):
+        """Get comments by post id or All comments by a user"""
         post_id = request.GET.get("post_id")
         if post_id:
-            comments = Comments.objects.filter(post_id=post_id)
-            resp = CommentsSerializer(comments, many=True).data
-            return CustomResponse(message="Post API",payload=resp,code=status.HTTP_200_OK)
+            resp = CommentController(request.user).get_post_comments(post_id)
         else:
-            comments = Comments.objects.filter(commented_by=request.user.id)
-            resp = CommentsSerializer(comments, many=True).data
-            return CustomResponse(message="Post API",payload=resp,code=status.HTTP_200_OK)
+            resp = CommentController(request.user).get_user_comments()
+        return CustomResponse(message="Post API", payload=resp, code=status.HTTP_200_OK)
 
     def post(self, request):
-        validate_request(
-            request.data, ["post_id", "comment"]
+        """Comment for a post"""
+        CommentController(request.user).add_comment(
+            request.data.get("post_id"), request.data.get("comment")
         )
-        try:
-            post = Post.objects.get(id=request.data.get("post_id"))
-        except Exception as e:
-            raise ValidationError("Post not found")
-
-        Comments.objects.create(**{
-            "comment": request.data.get("comment"),
-            "post_id": post,
-            "commented_by": request.user
-        })
         return CustomResponse(message="Comments API", payload="Comments Posted", code=status.HTTP_201_CREATED)
 
     def delete(self, request):
+        """delete a previosly posted comment"""
         comment_id = request.data.get("id")
         if not comment_id:
             raise ValidationError("Missing comment id")
-
-        comments = Comments.objects.filter(commented_by=request.user.id, id=comment_id)
-        if not comments.exists():
-            raise ValidationError("Comments does not exits")
-
-        comments.delete()
+        CommentController(request.user).remove_comments(comment_id)
         return CustomResponse(message="Comments API", payload="Comments Deleted", code=status.HTTP_201_CREATED)
