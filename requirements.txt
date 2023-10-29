@@ -7,3 +7,4 @@ Pillow
 python-dotenv
 django-filter
 pyotp
+django-cacheops

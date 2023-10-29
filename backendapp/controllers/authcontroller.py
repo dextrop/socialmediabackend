@@ -2,6 +2,7 @@ from django.urls import reverse
 from urllib.parse import urlencode
 import base64, hashlib, random, string, os
 from oauth2_provider.models import Application
+from django.conf import settings
 
 class OAuthController():
     def get_application(self):
@@ -13,7 +14,7 @@ class OAuthController():
         return Application.objects.first()
 
     def get_client_secret(self):
-        return os.environ.get("OAUTH_CLIENT_SECRET")
+        return settings.APP_CONF["OAUTH_CLIENT_SECRET"]
 
     def generate_oauth_url(self):
         """Generate OAuth authorize url for provided code challenge."""
@@ -26,9 +27,9 @@ class OAuthController():
 
         base_url = "http://localhost:8000/oauth/authorize/"
         data = {
-            "client_id": application.client_id,
+            "client_id": settings.APP_CONF["OAUTH_CLIENT_ID"],
             "response_type": "code",
-            "redirect_uri": application.redirect_uris,
+            "redirect_uri": settings.APP_CONF["OAUTH_CLIENT_URIS"],
             "code_challenge": code_challenge,
             "code_challenge_method": "S256",
             "state": code_verifier
@@ -41,11 +42,11 @@ class OAuthController():
 
         application = self.get_application()
         data = {
-            "client_id": application.client_id,
-            "client_secret": self.get_client_secret(),
+            "client_id": settings.APP_CONF["OAUTH_CLIENT_ID"],
+            "client_secret": settings.APP_CONF["OAUTH_CLIENT_SECRET"],
             "code": code,
             "code_verifier": code_verifier,
-            "redirect_uri": application.redirect_uris,
+            "redirect_uri": settings.APP_CONF["OAUTH_CLIENT_URIS"],
             "grant_type": "authorization_code",
         }
         headers = {"Content-Type": "application/x-www-form-urlencoded", "Cache-Control": "no-cache"}

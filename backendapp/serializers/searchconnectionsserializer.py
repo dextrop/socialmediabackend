@@ -1,7 +1,9 @@
 from rest_framework import serializers
 from backendapp.models import Users, Connection
+from backendapp.serializers.cacheserializer import CachedSerializer
 
-class SearchConnectionsSerializer(serializers.ModelSerializer):
+
+class SearchConnectionsSerializer(CachedSerializer):
     profile_picture = serializers.ImageField(max_length=None, use_url=True, allow_null=True, required=False)
 
     class Meta:

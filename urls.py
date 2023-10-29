@@ -22,12 +22,14 @@ from backendapp.views.searchfriends import UserSearchAPIView
 from backendapp.views.connections import ConnectionView
 from backendapp.views.post import PostView
 from backendapp.views.likes import LikeView
+from backendapp.views.verify import VerifyUserView
 from backendapp.views.comments import CommentView
 from backendapp.views.authurls import SignupView, LoginView, CustomLoginPageView, AuthCallbackView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/', SignupView.as_view()),
+    path('verify/', VerifyUserView.as_view()),
     path('login/', LoginView.as_view()),
     path('oauth/login/', CustomLoginPageView.as_view()),
     path('callback/', AuthCallbackView.as_view()),

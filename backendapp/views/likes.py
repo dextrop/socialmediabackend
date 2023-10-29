@@ -6,7 +6,10 @@ from backendapp.middlewares.custom_response import CustomResponse
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import IsAuthenticated
 
-class LikeView(generics.GenericAPIView):
+from backendapp.middlewares.logginmixin import LoggingMixin
+
+
+class LikeView(generics.GenericAPIView, LoggingMixin):
     allowed_methods = ("POST",)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
     permission_classes = (IsAuthenticated, )

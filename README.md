@@ -1,8 +1,35 @@
 # Social Media Application Backend
 
 The Project is a social media application backend designed using Django and (Django Rest Framework) DRF.
-API Included
+
+**API Included**
+
 1. Signup API
+2. Verify Email
+3. Login API : Generates OAuth 2.0 URL
+4. Get User Info API
+5. Search Connections API
+6. Get All Connections
+7. Add Connection
+8. Approve Connection
+9. Disconnect
+10. Get, Create & Delete Post API
+11. Like & Unlike Post API
+12. Get All Likes for a user or a post
+13. Add & Delete Comments 
+14. Get All Comments for a user or a post
+
+**In The project**
+
+- Have used sqlite database, can be changed to postgresql.
+- Application credentials are stored in configration inside a json file, this can be changed to vault.
+- For testing purpose postman script is included.
+- Admin panel is created at localhost:8000/admin.
+- Django Signal is used for sending email whenever a new user is registered.
+- For request validation custom middleware is being used. 
+- Used Custom Caching for serializer with Django Signal on cache being updated and removed based on Model Instance Update or delete.
+- Local Memory Caching is being used which can be changed based.
+- No Password Hasher is used.
 
 ## Setup Project
 
@@ -65,13 +92,24 @@ OAUTH_CLIENT_SECRET=CLIENT_SECRET
 
 Replace the `CLIENT_SECRET` with `client_secret` copied before, also you can replace the base url to IP or domain if the project is hosted on a server.
 
-## Test API's
+## Setup Configration & Run
 
-To test the api's use the postman script provided inside scripts.
+Rename file `socialmediabackend/sample-config.json` to `config.json` and fill the OAUTH configration with a `BASE32_SECRET_TOTP` for OTP. 
+To generate a Base32 Secret key use.
 
-**Run project using**
+```python
+import pyotp
+
+pyotp.random_base32()
+
+```
+
+**Run project**
+
 ```shell
 make run
 ```
 
+## Test API's
 
+To test the api's use the postman script provided inside scripts. The postman script include API and Environment configration, make sure your environment variable is constant before using it.

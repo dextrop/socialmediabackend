@@ -4,27 +4,29 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from backendapp.models import Post, Likes, Comments, Users
+from backendapp.serializers.cacheserializer import CachedSerializer
 
-class UsersSerializer(serializers.ModelSerializer):
+
+class UsersSerializer(CachedSerializer):
     class Meta:
         model = Users
         fields = ('name', 'username', 'profile_picture')
 
-class LikeSerializer(serializers.ModelSerializer):
+class LikeSerializer(CachedSerializer):
     liked_by = UsersSerializer()
     class Meta:
         model = Likes
         exclude = ('post_id', )
 
 
-class CommentSerializer(serializers.ModelSerializer):
+class CommentSerializer(CachedSerializer):
     commented_by = UsersSerializer()
     class Meta:
         model = Comments
         exclude = ('post_id', )
 
 
-class PostSerializer(serializers.ModelSerializer):
+class PostSerializer(CachedSerializer):
     likes = LikeSerializer(many=True, read_only=True)
     comments = CommentSerializer(many=True, read_only=True)
 

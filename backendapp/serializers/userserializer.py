@@ -1,11 +1,13 @@
+import re
 from rest_framework import serializers
 from backendapp.models import Users
-import re
+from backendapp.serializers.cacheserializer import CachedSerializer
 
-class UsersSerializer(serializers.ModelSerializer):
+class UsersSerializer(CachedSerializer):
     profile_picture = serializers.ImageField(max_length=None, use_url=True, allow_null=True, required=False)
 
     class Meta:
+        name = "users"
         model = Users
         fields = ('id', 'email', 'username', 'name', 'profile_picture', 'password')
         extra_kwargs = {'password': {'write_only': True}}  # Password must be a write only field.
@@ -37,3 +39,4 @@ class UsersSerializer(serializers.ModelSerializer):
         if not value.isalnum():
             raise serializers.ValidationError("Username should only contain alphanumeric characters.")
         return value
+

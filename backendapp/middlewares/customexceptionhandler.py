@@ -24,13 +24,6 @@ def custom_exception_handler(exc, context):
 			code = HTTP_500_INTERNAL_SERVER_ERROR
 			message = exc.message
 
-		elif (exc.__class__.__name__ == 'KeyError') or (exc.__class__.__name__ == 'MultiValueDictKeyError'):
-			code = HTTP_400_BAD_REQUEST
-			try:
-				message = 'Bad request must pass %s' % exc.message
-			except Exception as e:
-				message = 'Missing key in request data, please check'
-
 		elif exc.__class__.__name__ == 'ValidationError':
 			print (exc.__class__.__name__)
 			code = HTTP_400_BAD_REQUEST

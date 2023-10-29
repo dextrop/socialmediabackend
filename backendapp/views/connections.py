@@ -3,10 +3,11 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
 from backendapp.middlewares.custom_response import CustomResponse
 from backendapp.controllers.connections_controller import ConnectionsController
+from backendapp.middlewares.logginmixin import LoggingMixin
 
 MSG = "Connection API's"
 
-class ConnectionView(generics.GenericAPIView):
+class ConnectionView(generics.GenericAPIView, LoggingMixin):
     permission_classes = (IsAuthenticated, )
 
     def _setup(self, request):

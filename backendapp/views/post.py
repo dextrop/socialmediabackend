@@ -1,4 +1,6 @@
 from rest_framework import generics, status
+
+from backendapp.middlewares.logginmixin import LoggingMixin
 from backendapp.serializers.postserializer import Post, PostSerializer
 from backendapp.middlewares.custom_response import CustomResponse
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
@@ -6,7 +8,7 @@ from rest_framework.permissions import IsAuthenticated
 from backendapp.controllers.postcontroller import PostController
 from backendapp.middlewares.custompagination import CustomPagination
 
-class PostView(generics.GenericAPIView):
+class PostView(generics.GenericAPIView, LoggingMixin):
     allowed_methods = ("POST",)
     parser_classes = (MultiPartParser, FormParser, JSONParser)
     permission_classes = (IsAuthenticated, )

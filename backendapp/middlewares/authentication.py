@@ -13,7 +13,7 @@ class TokenAuthentication(authentication.BaseAuthentication):
             token = AccessToken.objects.get(token=_token.split(" ")[1])
             user = Users.objects.get(username=token.user)
             if not user.is_active:
-                raise ValidationError("User not verified, verify user to continue using API's")
+                raise ValidationError("User not verified, verify.py user to continue using API's")
             return (user, token)
         except Exception as e:
             pass

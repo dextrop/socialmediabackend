@@ -2,9 +2,11 @@ import re
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from backendapp.models import Comments
+from backendapp.serializers.cacheserializer import CachedSerializer
 
-class CommentsSerializer(serializers.ModelSerializer):
+class CommentsSerializer(CachedSerializer):
     class Meta:
+        name = "users"
         model = Comments
         fields = '__all__'
 

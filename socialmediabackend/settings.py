@@ -27,9 +27,9 @@ APP_CONF = json.loads(open(str(BASE_DIR) + "/socialmediabackend/config.json").re
 SECRET_KEY = 'django-insecure-oh4)493)omcd9&=^_8_mkhmlfkkq777rw)ppf42d)u(z^kvq1*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -132,6 +132,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'ecom',
+    }
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -172,13 +179,13 @@ REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES': (
 ),
     "EXCEPTION_HANDLER": "backendapp.middlewares.customexceptionhandler.custom_exception_handler",
 
-    # Throttling class for Email API.
-    'DEFAULT_THROTTLE_CLASSES': [
-        'backendapp.middlewares.customthrottle.UserAgentRateThrottle',
-    ],
-    'DEFAULT_THROTTLE_RATES': {
-        'user_agent': '1/180',  # Allowing 1 request per 180 seconds (3 minutes)
-    }
+    # # Throttling class for Email API.
+    # 'DEFAULT_THROTTLE_CLASSES': [
+    #     'backendapp.middlewares.customthrottle.UserAgentRateThrottle',
+    # ],
+    # 'DEFAULT_THROTTLE_RATES': {
+    #     'user_agent': '1/180',  # Allowing 1 request per 180 seconds (3 minutes)
+    # }
 }
 
 AUTHENTICATION_BACKENDS = [
@@ -187,26 +194,40 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'debug.log',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'simple': {
+#             'format': '%(levelname)s %(asctime)s %(message)s'
+#         },
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': 'debug.log',
+#         },
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'simple'
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#     },
+# }
+
+CACHEOPS = {
+    'auth.user': {'ops': 'all'},  # Caching all operations on User model
 }
 
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/uploads/'
 
 LOGIN_URL = '/oauth/login'

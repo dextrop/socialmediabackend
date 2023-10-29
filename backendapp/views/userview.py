@@ -1,9 +1,11 @@
 from rest_framework import generics, status
 from backendapp.middlewares.custom_response import CustomResponse
 from rest_framework.permissions import IsAuthenticated
+
+from backendapp.middlewares.logginmixin import LoggingMixin
 from backendapp.serializers.userserializer import UsersSerializer
 
-class UserView(generics.GenericAPIView):
+class UserView(generics.GenericAPIView, LoggingMixin):
     allowed_methods = ("GET", "PUT", )
     permission_classes = (IsAuthenticated, )
 

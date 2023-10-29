@@ -3,8 +3,10 @@ from django.db.models import Q
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from backendapp.models.connections import Connection
+from backendapp.serializers.cacheserializer import CachedSerializer
 
-class ConnectionSerializer(serializers.ModelSerializer):
+
+class ConnectionSerializer(CachedSerializer):
 
     class Meta:
         model = Connection
