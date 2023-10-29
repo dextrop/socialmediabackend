@@ -6,7 +6,7 @@ The Project is a social media application backend designed using Django and (Dja
 
 1. Signup API
 2. Verify Email
-3. Login API : Generates OAuth 2.0 URL
+3. Login API : Logs in and Generates OAuth2 Auth URL
 4. Get User Info API
 5. Search Connections API
 6. Get All Connections
@@ -21,9 +21,9 @@ The Project is a social media application backend designed using Django and (Dja
 
 **In The project**
 
-- Have used sqlite database, can be changed to postgresql.
-- Application credentials are stored in configration inside a json file, this can be changed to vault.
-- For testing purpose postman script is included.
+- Have used SQLite database, which can be changed to Postgresql.
+- Application credentials are stored in configuration inside a json file, this can be changed to vault.
+- For testing purpose, postman script is included.
 - Admin panel is created at localhost:8000/admin.
 - Django Signal is used for sending email whenever a new user is registered.
 - For request validation custom middleware is being used. 
