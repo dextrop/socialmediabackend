@@ -71,7 +71,6 @@ make createsuperuser
 - Navigate to [http://localhost:8000/admin/](http://localhost:8000/admin/) and login with your creentials
 
 - Once Logged in Go to application
-![admin](images/adminpanel.png)
 
 - Click on create new application and fill the below information
   - `Callback`: `http://localhost:8000/callback`
@@ -81,21 +80,10 @@ make createsuperuser
 
 *make sure you copy client_secret before saving the application*
 
-![admin](images/create_oauth_app.png)
-
-- Create an .env file with below information
-
-```
-BASE_URL=http://localhost:8000
-OAUTH_CLIENT_SECRET=CLIENT_SECRET
-```
-
-Replace the `CLIENT_SECRET` with `client_secret` copied before, also you can replace the base url to IP or domain if the project is hosted on a server.
-
-## Setup Configration & Run
-
-Rename file `socialmediabackend/sample-config.json` to `config.json` and fill the OAUTH configration with a `BASE32_SECRET_TOTP` for OTP. 
+- Rename file `socialmediabackend/sample-config.json` to `config.json` and fill the OAUTH configration, Sengrid API Key for email with a `BASE32_SECRET_TOTP` for OTP. 
 To generate a Base32 Secret key use.
+
+## Run Backend Application
 
 ```python
 import pyotp
