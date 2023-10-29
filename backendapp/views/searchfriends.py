@@ -2,12 +2,12 @@ from rest_framework.generics import ListAPIView
 from rest_framework import filters, status
 from django_filters.rest_framework import DjangoFilterBackend
 
-from backendapp.lib.custompagination import CustomPagination
+from backendapp.middlewares.custompagination import CustomPagination
 from backendapp.models import Users
 from backendapp.serializers.searchconnectionsserializer import SearchConnectionsSerializer
 from rest_framework.permissions import IsAuthenticated
 from backendapp.serializers.userfilter import UserFilter
-from backendapp.lib.custom_response import CustomResponse
+from backendapp.middlewares.custom_response import CustomResponse
 
 class UserSearchAPIView(ListAPIView):
     permission_classes = (IsAuthenticated, )

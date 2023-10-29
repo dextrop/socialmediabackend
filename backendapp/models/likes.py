@@ -8,5 +8,7 @@ class Likes(models.Model):
 
     class Meta:
         unique_together = ('post_id', 'liked_by')
+        db_table = 'likes'
+        app_label = 'backendapp'
 
 

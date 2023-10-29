@@ -22,3 +22,5 @@ class Connection(models.Model):
 
     class Meta:
         unique_together = ('user', 'connection')
+        db_table = 'connections'
+        app_label = 'backendapp'

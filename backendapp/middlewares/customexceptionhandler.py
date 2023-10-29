@@ -1,6 +1,6 @@
 # import traceback, logger
 from rest_framework.views import exception_handler
-from backendapp.lib.custom_response import CustomResponse
+from backendapp.middlewares.custom_response import CustomResponse
 from rest_framework.status import HTTP_500_INTERNAL_SERVER_ERROR, HTTP_501_NOT_IMPLEMENTED, HTTP_400_BAD_REQUEST
 
 def custom_exception_handler(exc, context):

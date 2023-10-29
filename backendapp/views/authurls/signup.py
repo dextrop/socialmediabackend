@@ -1,5 +1,5 @@
 from rest_framework import generics, status
-from backendapp.lib.custom_response import CustomResponse
+from backendapp.middlewares.custom_response import CustomResponse
 from rest_framework.parsers import MultiPartParser, FormParser
 from backendapp.serializers.userserializer import UsersSerializer, Users
 

@@ -6,3 +6,4 @@ pymemcache
 Pillow
 python-dotenv
 django-filter
+pyotp

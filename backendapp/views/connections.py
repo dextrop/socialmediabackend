@@ -1,7 +1,7 @@
 from rest_framework import generics, status
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import IsAuthenticated
-from backendapp.lib.custom_response import CustomResponse
+from backendapp.middlewares.custom_response import CustomResponse
 from backendapp.controllers.connections_controller import ConnectionsController
 
 MSG = "Connection API's"

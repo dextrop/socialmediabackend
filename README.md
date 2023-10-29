@@ -1,5 +1,9 @@
 # Social Media Application Backend
 
+The Project is a social media application backend designed using Django and (Django Rest Framework) DRF.
+API Included
+1. Signup API
+
 ## Setup Project
 
 #### 1. Clone

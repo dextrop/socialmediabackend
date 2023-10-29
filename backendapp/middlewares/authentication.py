@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from oauth2_provider.models import AccessToken
 from backendapp.models.users import Users
 from rest_framework import authentication
@@ -11,6 +12,8 @@ class TokenAuthentication(authentication.BaseAuthentication):
         try:
             token = AccessToken.objects.get(token=_token.split(" ")[1])
             user = Users.objects.get(username=token.user)
+            if not user.is_active:
+                raise ValidationError("User not verified, verify user to continue using API's")
             return (user, token)
         except Exception as e:
             pass

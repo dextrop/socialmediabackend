@@ -10,4 +10,6 @@ class Post(models.Model):
 
     class Meta:
         unique_together = ('status', 'posted_by', 'picture')
+        db_table = 'posts'
+        app_label = 'backendapp'
 

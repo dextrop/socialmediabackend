@@ -3,7 +3,7 @@ from rest_framework.exceptions import ValidationError
 
 from backendapp.serializers.commentsserializer import CommentsSerializer, Comments
 from backendapp.models.post import Post
-from backendapp.lib.custom_response import CustomResponse
+from backendapp.middlewares.custom_response import CustomResponse
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import IsAuthenticated
 from backendapp.controllers.commentscontroller import CommentController

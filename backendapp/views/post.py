@@ -1,10 +1,10 @@
 from rest_framework import generics, status
 from backendapp.serializers.postserializer import Post, PostSerializer
-from backendapp.lib.custom_response import CustomResponse
+from backendapp.middlewares.custom_response import CustomResponse
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.permissions import IsAuthenticated
 from backendapp.controllers.postcontroller import PostController
-from backendapp.lib.custompagination import CustomPagination
+from backendapp.middlewares.custompagination import CustomPagination
 
 class PostView(generics.GenericAPIView):
     allowed_methods = ("POST",)

@@ -10,4 +10,5 @@ class Comments(models.Model):
 
     class Meta:
         unique_together = ('comment', 'post_id', 'commented_by')
-
+        db_table = 'comments'
+        app_label = 'backendapp'

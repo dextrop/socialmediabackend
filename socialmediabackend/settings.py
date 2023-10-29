@@ -9,17 +9,16 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import json
 from pathlib import Path
-
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+APP_CONF = json.loads(open(str(BASE_DIR) + "/socialmediabackend/config.json").read())
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -80,7 +79,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'oauth2_provider.middleware.OAuth2TokenMiddleware',
-    'backendapp.lib.validator.RequestValidator',
+    'backendapp.middlewares.validator.RequestValidator',
 ]
 
 ROOT_URLCONF = 'urls'
@@ -169,9 +168,17 @@ REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES': (
     'rest_framework.renderers.JSONRenderer',
 
 ), 'DEFAULT_AUTHENTICATION_CLASSES': (
-    'backendapp.lib.authentication.TokenAuthentication',
+    'backendapp.middlewares.authentication.TokenAuthentication',
 ),
-    "EXCEPTION_HANDLER": "backendapp.lib.customexceptionhandler.custom_exception_handler",
+    "EXCEPTION_HANDLER": "backendapp.middlewares.customexceptionhandler.custom_exception_handler",
+
+    # Throttling class for Email API.
+    'DEFAULT_THROTTLE_CLASSES': [
+        'backendapp.middlewares.customthrottle.UserAgentRateThrottle',
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'user_agent': '1/180',  # Allowing 1 request per 180 seconds (3 minutes)
+    }
 }
 
 AUTHENTICATION_BACKENDS = [
@@ -179,6 +186,25 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
 ]
 
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 
 MEDIA_URL = '/media/'
