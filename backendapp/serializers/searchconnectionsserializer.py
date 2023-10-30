@@ -1,13 +1,11 @@
 from rest_framework import serializers
 from backendapp.models import Users, Connection
-from backendapp.serializers.cacheserializer import CachedSerializer
 
 
-class SearchConnectionsSerializer(CachedSerializer):
+class SearchConnectionsSerializer(serializers.ModelSerializer):
     profile_picture = serializers.ImageField(max_length=None, use_url=True, allow_null=True, required=False)
 
     class Meta:
-        name = "users"
         model = Users
         fields = ('id', 'email', 'username', 'name', 'profile_picture')
 
