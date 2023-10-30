@@ -1,0 +1,1711 @@
+{
+	"info": {
+		"_postman_id": "9ba58069-0a12-42cc-a362-0f73a48aface",
+		"name": "Social Media Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10525306"
+	},
+	"item": [
+		{
+			"name": "Signup API",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Trillbit User",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "saurabh@trillbit.com",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "saurabhtrill",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Alpha@12345",
+							"type": "text"
+						},
+						{
+							"key": "profile_picture",
+							"type": "file",
+							"src": "/Users/jennie/Downloads/title-image.png"
+						},
+						{
+							"key": "phone_no",
+							"value": "8009994420",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/signup/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"signup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"otp\": \"467170\",\n    \"email\": \"saurabh@trillbit.com\"\n}"
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/verify/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"verify",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login API",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"saurabhtrill\",\n    \"password\":\"Alpha@12345\"\n}"
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/login/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get UserInfo API",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/user/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Friends",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Saurabh Pandey",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "scoder9111@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "dextrop11",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Alpha@12345",
+							"type": "text"
+						},
+						{
+							"key": "profile_picture",
+							"type": "file",
+							"src": "/Users/jennie/Downloads/title-image.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/search/friends/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"search",
+						"friends",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Connections",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/connections/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"connections",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Connection",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"saurabhai\" \n}"
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/connections/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"connections",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Approve Connection",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"saurabhtrill\"\n}"
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/connections/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"connections",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Disconnect",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"saurabhtrill\"\n}"
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/connections/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"connections",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "status",
+							"value": "This is a sample post",
+							"type": "text"
+						},
+						{
+							"key": "picture",
+							"type": "file",
+							"src": "/Users/jennie/Downloads/How-to-run-a-python-django-app-in-docker.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/post/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"post",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Post",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/post/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"post",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Post",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1\n}"
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/post/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"post",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Like a post",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"post_id\": 5\n}"
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/likes/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"likes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Likes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/likes/?post_id=5",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"likes",
+						""
+					],
+					"query": [
+						{
+							"key": "post_id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Like",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"post_id\": 5\n}"
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/likes/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"likes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Comment",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"comment\": \"this is a sample comment\"\n}"
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/comment/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"comment",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "View Comments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/comment/?post_id=5",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"comment",
+						""
+					],
+					"query": [
+						{
+							"key": "post_id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Comment",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{OAUTH2_CLIENT_SECRET}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{OAUTH2_CLIENT_ID}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{OAUTH2_TOKEN_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{OAUTH2_AUTH_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{OAUTH2_CALLBACK_URL}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "SocialMediaApplication",
+							"type": "string"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code_with_pkce",
+							"type": "string"
+						},
+						{
+							"key": "challengeAlgorithm",
+							"value": "S256",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "client_authentication",
+							"value": "body",
+							"type": "string"
+						},
+						{
+							"key": "code_verifier",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "state",
+							"value": "01GSBVN9MXHYM7QFRDW4JVBY42",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1\n}"
+				},
+				"url": {
+					"raw": "{{APP_SERVER_ADDRESS}}/comment/",
+					"host": [
+						"{{APP_SERVER_ADDRESS}}"
+					],
+					"path": [
+						"comment",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
