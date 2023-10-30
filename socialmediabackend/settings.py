@@ -9,11 +9,8 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import json
+import json, os
 from pathlib import Path
-from dotenv import load_dotenv
-
-load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +24,7 @@ APP_CONF = json.loads(open(str(BASE_DIR) + "/socialmediabackend/config.json").re
 SECRET_KEY = 'django-insecure-oh4)493)omcd9&=^_8_mkhmlfkkq777rw)ppf42d)u(z^kvq1*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost']
 
@@ -194,39 +191,45 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'simple': {
-#             'format': '%(levelname)s %(asctime)s %(message)s'
-#         },
-#     },
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': 'debug.log',
-#         },
-#         'console': {
-#             'level': 'DEBUG',
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'simple'
-#         },
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['console'],
-#             'level': 'DEBUG',
-#             'propagate': True,
-#         },
-#     },
-# }
-
-CACHEOPS = {
-    'auth.user': {'ops': 'all'},  # Caching all operations on User model
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'json': {
+            '()': 'pythonjsonlogger.jsonlogger.JsonFormatter',
+            'fmt': '%(levelname)s %(asctime)s %(message)s',
+        },
+        'simple': {
+            'format': '%(levelname)s %(asctime)s %(message)s'
+        },
+        'price': {
+            '()': 'pythonjsonlogger.jsonlogger.JsonFormatter',
+            'format': '%(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'filesystem': {
+            'level': 'DEBUG',
+            'formatter': 'json',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/server.log'),
+            'when': 'D',
+            'interval': 1
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'filesystem'],
+            'level': 'DEBUG',
+            'propagate': False,
+        }
+    }
 }
-
 
 MEDIA_URL = '/uploads/'
 

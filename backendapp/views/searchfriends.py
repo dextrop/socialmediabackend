@@ -34,9 +34,12 @@ class UserSearchAPIView(ListAPIView, LoggingMixin):
         This function handles the GET request, applies filtering and pagination to the queryset,
         serializes it, and returns a custom response with a message and paginated data.
         """
-        queryset = self.filter_queryset(self.get_queryset())
-        paginated_user = self.paginate_queryset(queryset)
-        context = {'user': request.user}
-        serializer = SearchConnectionsSerializer(paginated_user, many=True, context=context)
-        resp = self.get_paginated_response(serializer.data)
+        try:
+            queryset = self.filter_queryset(self.get_queryset())
+            paginated_user = self.paginate_queryset(queryset)
+            context = {'user': request.user}
+            serializer = SearchConnectionsSerializer(paginated_user, many=True, context=context)
+            resp = self.get_paginated_response(serializer.data)
+        except Exception as e:
+            print (e)
         return CustomResponse(message="Users retrieved successfully", payload=resp, code=status.HTTP_200_OK)

@@ -1,3 +1,5 @@
+from rest_framework.response import Response
+
 from backendapp.models.users import Users
 from rest_framework import generics, status
 from rest_framework.exceptions import ValidationError
@@ -7,8 +9,7 @@ from backendapp.middlewares.custom_response import CustomResponse
 from backendapp.controllers.userverification import UserVerification
 
 class VerifyUserView(generics.GenericAPIView, LoggingMixin):
-    allowed_methods = ("GET", "PUT", )
-    permission_classes = (IsAuthenticated, )
+    allowed_methods = ("POST", )
 
     def post(self, request):
         """
@@ -16,7 +17,7 @@ class VerifyUserView(generics.GenericAPIView, LoggingMixin):
         The response includes a message, a status code, and serialized user data as payload
         """
         email = request.data.get("email")
-        otp = request.data.get("email")
+        otp = request.data.get("otp")
         if not email:
             raise ValidationError("Missing Email ID")
 
@@ -24,19 +25,21 @@ class VerifyUserView(generics.GenericAPIView, LoggingMixin):
             raise ValidationError("Missing OTP")
 
         try:
-            user = Users.object.get(email=request.data.get("email"))
+            user = Users.objects.get(email=request.data.get("email"))
         except Exception as e:
+            print (e)
             raise ValidationError("User for email id does not exits")
 
-        status = UserVerification(user).verify_totp(
+        verificationstatus = UserVerification(user).verify_totp(
             otp
         )
-        if status:
+        if verificationstatus:
             setattr(user, "is_active", True)
             user.save()
+            print("User Verified", user)
 
         return CustomResponse(
-            message="Test API",
+            message="Verify Account API",
             code=status.HTTP_201_CREATED,
             payload="User verified"
         )

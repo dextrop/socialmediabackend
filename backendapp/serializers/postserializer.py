@@ -9,12 +9,14 @@ from backendapp.serializers.cacheserializer import CachedSerializer
 
 class UsersSerializer(CachedSerializer):
     class Meta:
+        name = "users"
         model = Users
         fields = ('name', 'username', 'profile_picture')
 
 class LikeSerializer(CachedSerializer):
     liked_by = UsersSerializer()
     class Meta:
+        name = "likes"
         model = Likes
         exclude = ('post_id', )
 
@@ -22,6 +24,7 @@ class LikeSerializer(CachedSerializer):
 class CommentSerializer(CachedSerializer):
     commented_by = UsersSerializer()
     class Meta:
+        name = "comments"
         model = Comments
         exclude = ('post_id', )
 
@@ -31,6 +34,7 @@ class PostSerializer(CachedSerializer):
     comments = CommentSerializer(many=True, read_only=True)
 
     class Meta:
+        name = "post"
         model = Post
         fields = '__all__'
 

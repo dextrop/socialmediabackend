@@ -7,5 +7,6 @@ from backendapp.serializers.cacheserializer import CachedSerializer
 class LikesSerializer(CachedSerializer):
 
     class Meta:
+        name = "likes"
         model = Likes
         fields = '__all__'

@@ -19,6 +19,7 @@ migrate:
 
 install:
 	pip install -r requirements.txt
+	mkdir logs
 
 ## Create Super User
 createsuperuser:

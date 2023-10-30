@@ -25,7 +25,6 @@ def custom_exception_handler(exc, context):
 			message = exc.message
 
 		elif exc.__class__.__name__ == 'ValidationError':
-			print (exc.__class__.__name__)
 			code = HTTP_400_BAD_REQUEST
 			message = exc.message
 

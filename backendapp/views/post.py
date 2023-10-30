@@ -32,8 +32,8 @@ class PostView(generics.GenericAPIView, LoggingMixin):
 
     def post(self, request):
         """Create a new post"""
-        status, error = PostController().create_post(request)
-        if not status:
+        statuscreate, error = PostController().create_post(request)
+        if not statuscreate:
             return CustomResponse(message=error, payload=None, code=status.HTTP_400_BAD_REQUEST)
         return CustomResponse(message="Post API", payload="Post created Successfully", code=status.HTTP_201_CREATED)
 

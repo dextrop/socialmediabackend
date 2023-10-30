@@ -9,6 +9,7 @@ from backendapp.serializers.cacheserializer import CachedSerializer
 class ConnectionSerializer(CachedSerializer):
 
     class Meta:
+        name = "connection"
         model = Connection
         fields = '__all__'
 

@@ -9,7 +9,7 @@ class Post(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
-        unique_together = ('status', 'posted_by', 'picture')
+        unique_together = (('status', 'posted_by'), ('status', 'picture', 'posted_by'),)
         db_table = 'posts'
         app_label = 'backendapp'
 

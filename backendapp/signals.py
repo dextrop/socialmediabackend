@@ -43,6 +43,7 @@ def send_verification_email(sender, instance, created, **kwargs):
         recipient_email = instance.email
         otp = UserVerification(instance).generate_totp()
         try:
+            print ("send Email", otp, recipient_email)
             response = send_email(otp, recipient_email)
         except Exception as e:
             print (e)
