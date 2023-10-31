@@ -25,7 +25,7 @@ class OAuthController():
         code_challenge = hashlib.sha256(code_verifier.encode('utf-8')).digest()
         code_challenge = base64.urlsafe_b64encode(code_challenge).decode('utf-8').replace('=', '')
 
-        base_url = "http://localhost:8000/oauth/authorize/"
+        base_url = settings.APP_CONF["BASE_URI"] + reverse('oauth2_provider:authorize')
         data = {
             "client_id": settings.APP_CONF["OAUTH_CLIENT_ID"],
             "response_type": "code",
@@ -39,8 +39,6 @@ class OAuthController():
 
     def generate_token_url(self, code, code_verifier):
         """Generate OAuth Token"""
-
-        application = self.get_application()
         data = {
             "client_id": settings.APP_CONF["OAUTH_CLIENT_ID"],
             "client_secret": settings.APP_CONF["OAUTH_CLIENT_SECRET"],
@@ -50,5 +48,5 @@ class OAuthController():
             "grant_type": "authorization_code",
         }
         headers = {"Content-Type": "application/x-www-form-urlencoded", "Cache-Control": "no-cache"}
-        url = os.environ.get("BASE_URL") + reverse('oauth2_provider:token')
+        url = settings.APP_CONF["BASE_URI"] + reverse('oauth2_provider:token')
         return {"url": url, "data": data, "headers":headers }
